@@ -24,6 +24,7 @@
 #include "draw-imp.h"
 
 #include <string.h>
+#include <limits.h>
 
 /* Unpack image samples and optionally pad pixels with opaque alpha */
 
@@ -264,11 +265,12 @@ fz_unpack_tile(fz_context *ctx, fz_pixmap *dst, unsigned char *src, int n, int d
 	{
 		fz_stream *stm;
 		int x, k;
+		size_t skipbits;
 
 		if ((size_t)w * n * depth > 8 * stride)
 			fz_throw(ctx, FZ_ERROR_ARGUMENT, "invalid stride (underflow)");
 
-		size_t skipbits = 8 * stride - (size_t)w * n * depth;
+		skipbits = 8 * stride - (size_t)w * n * depth;
 
 		if (skipbits > 32)
 			fz_throw(ctx, FZ_ERROR_ARGUMENT, "Inappropriate stride!");

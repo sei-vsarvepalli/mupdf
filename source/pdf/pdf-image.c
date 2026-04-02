@@ -24,6 +24,7 @@
 #include "mupdf/pdf.h"
 
 #include <string.h>
+#include <limits.h>
 
 static fz_image *pdf_load_jpx_as_compressed_image(fz_context *ctx, pdf_document *doc, pdf_obj *dict);
 static fz_image *pdf_load_jpx_as_compressed_image_mask(fz_context *ctx, pdf_document *doc, pdf_obj *dict);
